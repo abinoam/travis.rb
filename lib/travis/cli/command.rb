@@ -100,6 +100,8 @@ module Travis
 
       def terminal
         @terminal ||= HighLine.new(input, output)
+        @terminal.use_color = HighLine.use_color?
+        @terminal
       end
 
       def input=(io)
