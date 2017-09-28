@@ -12,6 +12,12 @@ temp_dir = nil
 HighLine.use_color = false
 HighLine.define_singleton_method(:use_color=) { |_| }
 
+# HighLine will call #echo on output buffer.
+# StringIO doesn't have it.
+class StringIO
+  attr_accessor :echo
+end
+
 RSpec.configure do |c|
   c.include Helpers
 
