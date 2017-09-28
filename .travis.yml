@@ -2,23 +2,24 @@ language: ruby
 sudo: false
 cache: bundler
 rvm:
-- 1.9.2
-- 1.9.3
-- 2.0.0
-- 2.1.0
-- 2.1.3
-- jruby
+  - 2.0
+  - 2.1
+  - 2.2
+  - 2.3
+  - 2.4
+  - ruby-head
+  - jruby-head
+  - rbx-3
 os:
-- linux
-- osx
+  - linux
+  - osx
 matrix:
-  exclude:
-  - rvm: 1.9.2
-    os: osx
-  - rvm: 2.1.0
-    os: osx
-  - rvm: jruby
-    os: osx
+  include:
+  - rvm: 1.9
+    before_install:
+      - gem update --system
+      - gem update bundler
+      - gem cleanup bundler
 deploy:
   provider: rubygems
   api_key:
@@ -26,5 +27,5 @@ deploy:
   gem: travis
   on:
     repo: travis-ci/travis.rb
-    ruby: 2.0.0
+    ruby: 2.0
     condition: "$(uname) = Linux"
