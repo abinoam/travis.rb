@@ -8,23 +8,26 @@ rvm:
   - 2.3
   - 2.4
   - ruby-head
-  - jruby-head
   - rbx-3
 os:
   - linux
   - osx
 matrix:
   include:
-  - rvm:
-    - 1.9
-    - jruby-head
-    before_install:
+  - rvm: 1.9
+    before_install: &UPDATE_BUNDLER_BEFORE_INSTALL
       - gem update --system
       - gem update bundler
       - gem cleanup bundler
-    os:
-      - linux
-      - osx
+    os: linux
+  - rvm: 1.9
+    before_install: *UPDATE_BUNDLER_BEFORE_INSTALL
+    os: osx
+  - rvm: jruby-head
+    before_install: *UPDATE_BUNDLER_BEFORE_INSTALL
+    os: osx
+  - rvm: jruby-head
+    os: linux
   fast_finish: true
   allow_failures:
     - os: osx
