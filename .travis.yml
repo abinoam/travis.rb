@@ -17,7 +17,7 @@ matrix:
   - rvm: 1.9
     before_install: &UPDATE_BUNDLER_BEFORE_INSTALL
       - gem update --system
-      - gem update bundler
+      - gem install bundler
       - gem cleanup bundler
     os: linux
   - rvm: 1.9
