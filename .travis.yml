@@ -15,7 +15,9 @@ os:
   - osx
 matrix:
   include:
-  - rvm: 1.9
+  - rvm:
+    - 1.9
+    - jruby-head
     before_install:
       - gem update --system
       - gem update bundler
@@ -23,6 +25,9 @@ matrix:
     os:
       - linux
       - osx
+  fast_finish: true
+  allow_failures:
+    - os: osx
 deploy:
   provider: rubygems
   api_key:
