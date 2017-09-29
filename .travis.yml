@@ -1,33 +1,19 @@
 language: ruby
 sudo: false
 cache: bundler
-rvm:
-  - 2.0
-  - 2.1
-  - 2.2
-  - 2.3
-  - 2.4
-  - ruby-head
-  - rbx-3
 os:
   - linux
   - osx
 matrix:
   include:
-  - rvm: 1.9
-    before_install: &UPDATE_BUNDLER_BEFORE_INSTALL
-      - gem update --system
-      - gem install bundler
-      - gem cleanup bundler
+  - rvm: 2.4
     os: linux
-  - rvm: 1.9
-    before_install: *UPDATE_BUNDLER_BEFORE_INSTALL
+  - rvm: 2.4
     os: osx
-  - rvm: jruby-head
-    before_install: *UPDATE_BUNDLER_BEFORE_INSTALL
+    before_install: brew install openssl
+  - rvm: 2.4
     os: osx
-  - rvm: jruby-head
-    os: linux
+    before_install: brew install openssl@1.1
   fast_finish: true
   allow_failures:
     - os: osx
